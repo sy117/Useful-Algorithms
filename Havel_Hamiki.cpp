@@ -1,3 +1,5 @@
+//cpp program to check whether given degree sequence represent a simple graph or not 
+
 #include <bits/stdc++.h>
 using namespace std;
 
