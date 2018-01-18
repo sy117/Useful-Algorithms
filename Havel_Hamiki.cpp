@@ -54,6 +54,7 @@ int main()
 	{
 		cin>>v[i];
 	}
+	sort(v.begin(),v.end());
 	if(validSequence(v))
 	{
 		cout<<"Valid\n";
