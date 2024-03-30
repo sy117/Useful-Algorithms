@@ -20,36 +20,29 @@ const int N = 1e5 + 5;
 vector<PI> edge[N];
 int dist[N];
 
-void in_it()
-{
-	for(int i=0;i<N;i++)
-	{
+void in_it(){
+	for(int i=0;i<N;i++) {
 		dist[i]=INF;
 	}
 }
-void bfs0_1 (int src)
-{
+void bfs0_1 (int src) {
 	in_it();
 	deque<int> dq;
 	dq.push_front(src);
-	dist[src]=0;
-	while(!dq.empty())
-	{
+	dist[src] = 0;
+	while(!dq.empty()){
 		int u = dq.front();
 		dq.pop_front();
-		for(int i=0;i<edge[u].size();i++)
-		{
-			int v=edge[u][i].first;
-			int w=edge[u][i].second;
-			if(dist[v]>dist[u]+w)
+		for(int i=0; i<edge[u].size(); i++){
+			int v = edge[u][i].first;
+			int w = edge[u][i].second;
+			if(dist[v] > dist[u]+w)
 			{
-				dist[v]=dist[u]+w;
-				if(w==0)
-				{
+				dist[v] = dist[u]+w;
+				if(w == 0){
 					dq.push_front(v);
 				}
-				else
-				{
+				else{
 					dq.push_back(v);
 				}
 			}
@@ -60,18 +53,16 @@ void bfs0_1 (int src)
 int main() 
 {
 	// n- vertices, e-edges
-	int n,e;
-	cin>>n>>e;
-	int u,v,w;
-	for(int i=0;i<e;i++)
-	{
-		cin>>u>>v>>w;
+	int n, e;
+	cin >> n >> e;
+	int u, v, w;
+	for(int i=0; i<e; i++){
+		cin >> u >> v >> w;
 		edge[u].pb({v,w});
 		edge[v].pb({v,w});
 	}
 	bfs0_1(0);
-	for(int i=0;i<n;i++)
-	{
+	for(int i=0; i<n; i++){
 		cout<<dist[i]<<" ";
 	}
 	return 0;

@@ -11,23 +11,19 @@ const int N = 1e5 + 5;
 vector<int> adj[N];
 bool vis[N];
 
-void dfs(int src)
-{
+void dfs(int src){
 	stack<int> st;
 	st.push(src);
-	vis[src]=true;
-	while(!st.empty())
-	{
+	vis[src] = true;
+	while(!st.empty()){
 		int x = st.top(); //x=current node
 		st.pop();
-		cout<<x<<"\n";
+		cout << x <<"\n";
 		
-		for(int i=0;i<adj[x].size();i++)
-		{
-			if(!vis[adj[x][i]])
-			{
+		for(int i=0; i<adj[x].size(); i++){
+			if(!vis[adj[x][i]]){
 				st.push(adj[x][i]);
-				vis[adj[x][i]]=true;
+				vis[adj[x][i]] = true;
 			}
 		}
 	}
@@ -37,16 +33,16 @@ void dfs(int src)
 int main()
 {
 	// n = vertices, m=edges
-	int n,m;
-	cin>>n>>m;
-	int u,v;
-	for(int i=0;i<m;i++)
+	int n, m;
+	cin >> n >> m;
+	int u, v;
+	for(int i=0; i<m; i++)
 	{
-		cin>>u>>v;
+		cin >> u >> v;
 		adj[u].pb(v);
 		adj[v].pb(u);
 	}
-	memset(vis, false,sizeof(vis));
+	memset(vis, false, sizeof(vis));
 	dfs(1);
 	return 0;
 }

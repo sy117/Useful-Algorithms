@@ -11,14 +11,11 @@ const int N = 1e5 + 5;
 vector<int> adj[N];
 bool vis[N];
 
-void dfs(int src)
-{
-	cout<<src<<"\n";
-	vis[src]=true;
-	for(auto x: adj[src])
-	{
-		if(!vis[x])
-		{
+void dfs(int src){
+	cout << src <<"\n";
+	vis[src] = true;
+	for(auto x: adj[src]){
+		if(!vis[x]){
 			dfs(x);
 		}
 	}
@@ -28,16 +25,16 @@ void dfs(int src)
 int main()
 {
 	// n = vertices, m=edges
-	int n,m;
-	cin>>n>>m;
-	int u,v;
-	for(int i=0;i<m;i++)
+	int n, m;
+	cin >> n >> m;
+	int u, v;
+	for(int i=0; i<m; i++)
 	{
-		cin>>u>>v;
+		cin >> u >> v;
 		adj[u].pb(v);
 		adj[v].pb(u);
 	}
-	memset(vis, false,sizeof(vis));
+	memset(vis, false, sizeof(vis));
 	dfs(1);
 	return 0;
 }
