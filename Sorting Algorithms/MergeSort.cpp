@@ -1,44 +1,64 @@
-
-
 #include <bits/stdc++.h>
-
 using namespace std;
 
-
-void merge(int arr[], int l, int m, int r) {
-    int nLeft = m-l+1;
-    int nRight = r-m;
-    
+void merge(int arr[], int st, int mid, int en){
+	/*
+		Copy content of sorted arr[st...mid] and arr[mid+1...en]
+		in two temporary arrays tempA and tempB. Finally merge tempA
+		and tempB in original array.
+	*/ 
+	int lenA, lenB;
+	lenA = (mid-st)+1;
+	lenB = en-mid;
+	int tempA[lenA], tempB[lenB];
+	// tempA = arr[st - mid]
+	for(int i=0; i<lenA; i++){
+		tempA[i] = arr[st+i];
+	}
+	
+	// tempB[] = arr[mid+1 - en]
+	for(int j=0; j<lenB; j++){
+		tempB[j] = arr[mid+1+j];
+	}
+	int i=0, j=0, idx=st;
+	
+	// Pick smallest among tempA[i] and tempB[j] and put at arr[idx]
+	while(i<lenA and j<lenB){
+		if(tempA[i] < tempB[j]){
+			arr[idx++] = tempA[i++];
+		}
+		else{
+			arr[idx++] = tempB[j++];
+		}
+	}
+	// If elements are left in tempA
+	while(i < lenA){
+		arr[idx++] = tempA[i++]; 
+	}
+	
+	// If elements are left in tempB
+	while(j < lenB){
+		arr[idx++] = tempB[j++];
+	}
 }
-
-void mergeSortRecur(int arr[], int l, int r) {
-    if(l < r) {
-        int mid = (l + r)/2;
-        mergeSortRecur(arr, l, mid);
-        mergeSortRecur(arr, mid+1, r);
-        merge(arr, l, mid, r);
-    }
+void mergeSort(int arr[], int st, int en){
+	if(st < en){
+		int mid = (st+en)/ 2;
+		// Divide till the arr[st - en] is not sorted
+		mergeSort(arr, st, mid);
+		mergeSort(arr, mid+1, en);
+		// merge sorted arrays arr[st - mid] and arr[mid+1 - en]
+		merge(arr, st, mid, en);
+	}
+	return;
+	
 }
-
-void mergeSort(int arr[], int n) {
-    mergeSortRecur(arr, 0, n-1);
-}
-
-
-int main () {
-
-    int arr[] = {5, 75, 17, 42, 2, 39, 23, 11, 55, 9};
-
-    int n = sizeof(arr)/(sizeof(int));
-
-    cout << "Array before sorting: "; 
-    for(int i=0; i<n; i++) {
-        cout << arr[i] << " \n"[i==n-1];
-    }
-    mergeSort(arr, n);
-    cout << "Array after sorting: "; 
-    for(int i=0; i<n; i++) {
-        cout << arr[i] << " \n"[i==n-1];
-    }
-    return 0;
+int main() {
+	int arr[] = {2, 43, 12, 7, 5, 75, 62, 39};
+	int n = sizeof(arr)/ sizeof(arr[0]);
+	mergeSort(arr, 0, n-1);
+	for(int i=0; i<n; i++){
+		cout << arr[i] << " \n"[i==n-1];
+	}
+	return 0;
 }
