@@ -19,7 +19,7 @@ int partition(vector<int>& arr, int start, int end) {
 	int pivot = arr[end];
 	int pIndex = 0;
 	for(int i=0; i<end; i++) {
-		if(arr[i] <= pivot){
+		if(arr[i] <= pivot) {
 			int temp = arr[pIndex];
 			arr[pIndex] = arr[i];
 			arr[i] = temp;
