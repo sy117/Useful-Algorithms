@@ -11,7 +11,7 @@ using namespace std;
 		Best/Avg Case:- O(N*logN)
 		Worst Case:- O(N*N)[when all elements are same or arrray is already sort inc/desc]
 	Idea:- Choose a element randomly, call it Pivot. Place it at it's correct position
-		in array such that all element left side of Pivot are smaller or equal ot Pivot.
+		in array such that all element left side of Pivot are smaller or equal to Pivot.
 		Do the same for left and right subarray Recursively.	
 */
  
