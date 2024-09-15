@@ -66,7 +66,7 @@ int main() {
     |         |
     4---------3
 
-    cyclye = true
+    cycle = true
 */
 
 /*
