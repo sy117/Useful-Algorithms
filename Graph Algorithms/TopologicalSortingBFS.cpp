@@ -2,7 +2,7 @@
 using namespace std;
  
 /*
-	TopologicalSorting:- Linear ordering of vertices such that of there is an edge
+	TopologicalSorting:- Linear ordering of vertices such that if there is an edge
     form u to v then, u appears before v in ordering
 
     NOTE:- Applicable only for DAG(Directed Acyclic Graph)
